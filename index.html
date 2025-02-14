@@ -94,8 +94,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>To My Bebe</h1>
-        <p>"Hello princess! Happy Valentines Day! (Happy for you cuz its with me hehe). I always see how hard you try to understand and see me, even if u struggle sometimes to make sense how I am the way I am (I´m a bit acoustic for humans). I´m proud of u, i appreciate u and I love you. Muah! So, would u like to be my Valentine? Quick disclaimer: The correct answers is "yes"."</p>
+        <h1>To My Dearest Love</h1>
+        <p>"Here, you can write your personal message for her."</p>
         <p class="heart">❤️</p>
         <div class="buttons">
             <button class="button yes" id="yesButton">Yes</button>
@@ -120,15 +120,16 @@
         const noButton = document.getElementById('noButton');
         const yesButton = document.getElementById('yesButton');
         const message = document.getElementById('message');
-        const container = document.querySelector('.container');
         
         function moveNoButton() {
-            const containerRect = container.getBoundingClientRect();
-            const maxX = containerRect.width - noButton.clientWidth - 50;
-            const maxY = containerRect.height - noButton.clientHeight - 50;
+            const containerRect = document.querySelector('.container').getBoundingClientRect();
+            const maxX = containerRect.left + containerRect.width - 150; // Keep it inside a smaller range
+            const minX = containerRect.left + 50;
+            const maxY = containerRect.top + containerRect.height - 100;
+            const minY = containerRect.top + 50;
             
-            const x = Math.random() * maxX + containerRect.left;
-            const y = Math.random() * maxY + containerRect.top;
+            const x = Math.random() * (maxX - minX) + minX;
+            const y = Math.random() * (maxY - minY) + minY;
             
             noButton.style.position = 'absolute';
             noButton.style.left = `${x}px`;
@@ -144,3 +145,4 @@
     </script>
 </body>
 </html>
+
