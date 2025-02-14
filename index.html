@@ -27,7 +27,6 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             position: relative;
             z-index: 10;
-            transition: transform 0.3s ease;
         }
         h1 {
             font-size: 2.5em;
@@ -58,6 +57,7 @@
         }
         .buttons {
             margin-top: 20px;
+            position: relative;
         }
         .button {
             font-size: 1.2em;
@@ -77,17 +77,28 @@
             color: white;
             position: absolute;
         }
+        #message {
+            display: none;
+            font-size: 1.5em;
+            background: white;
+            color: #333;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <div class="container" id="movingBox">
+    <div class="container">
         <h1>To My Dearest Love</h1>
         <p>"Here, you can write your personal message for her."</p>
         <p class="heart">❤️</p>
         <div class="buttons">
-            <button class="button yes">Yes</button>
+            <button class="button yes" id="yesButton">Yes</button>
             <button class="button no" id="noButton">No</button>
         </div>
+        <div id="message">Yay! I knew you would say yes! 💖</div>
     </div>
     <script>
         function createFloatingElements() {
@@ -104,12 +115,19 @@
         createFloatingElements();
 
         const noButton = document.getElementById('noButton');
-        const movingBox = document.getElementById('movingBox');
+        const yesButton = document.getElementById('yesButton');
+        const message = document.getElementById('message');
         
         noButton.addEventListener('mouseover', function() {
-            const x = Math.random() * (window.innerWidth - movingBox.clientWidth);
-            const y = Math.random() * (window.innerHeight - movingBox.clientHeight);
-            movingBox.style.transform = `translate(${x}px, ${y}px)`;
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        });
+        
+        yesButton.addEventListener('click', function() {
+            message.style.display = 'block';
         });
     </script>
 </body>
