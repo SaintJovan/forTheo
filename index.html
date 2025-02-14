@@ -68,7 +68,7 @@
         .no {
             background-color: #dc3545;
             color: white;
-            position: relative;
+            position: absolute;
         }
         #message {
             display: none;
@@ -80,22 +80,12 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             margin-top: 20px;
         }
-        .floating {
-            position: absolute;
-            font-size: 2em;
-            opacity: 0.7;
-            animation: float 10s infinite linear;
-        }
-        @keyframes float {
-            from { transform: translateY(100vh) translateX(0); }
-            to { transform: translateY(-10vh) translateX(50px); }
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>To My Dearest Love</h1>
-        <p>"Hello princess! Happy Valentines Day! (Happy for you cuz its with me hehe). I always see how hard you try to understand and see me, even if u struggle sometimes to make sense how I am the way I am (I´m a bit acoustic for humans). I´m proud of u, i appreciate u and I love you. Muah! So, would u like to be my Valentine? Quick disclaimer: The correct answers is "yes"."</p>
+        <p>"Here, you can write your personal message for her."</p>
         <p class="heart">❤️</p>
         <div class="buttons">
             <button class="button yes" id="yesButton">Yes</button>
@@ -104,36 +94,20 @@
         <div id="message">Yay! I knew you would say yes! 💖</div>
     </div>
     <script>
-        function createFloatingElements() {
-            const symbols = ['❤️', '🌸', '💖', '🌹'];
-            for (let i = 0; i < 20; i++) {
-                let el = document.createElement('div');
-                el.classList.add('floating');
-                el.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-                el.style.left = Math.random() * 100 + 'vw';
-                el.style.animationDuration = (5 + Math.random() * 5) + 's';
-                document.body.appendChild(el);
-            }
-        }
-        createFloatingElements();
-        
         const noButton = document.getElementById('noButton');
         const yesButton = document.getElementById('yesButton');
         const message = document.getElementById('message');
         
         function moveNoButton() {
-            const containerRect = document.querySelector('.container').getBoundingClientRect();
-            const maxX = containerRect.left + containerRect.width - 150; // Keep it inside a smaller range
-            const minX = containerRect.left + 50;
-            const maxY = containerRect.top + containerRect.height - 100;
-            const minY = containerRect.top + 50;
+            const container = document.querySelector('.container');
+            const containerRect = container.getBoundingClientRect();
+            const maxX = containerRect.width / 2 - 50; // Small movement range
+            const maxY = containerRect.height / 2 - 20;
             
-            const x = Math.random() * (maxX - minX) + minX;
-            const y = Math.random() * (maxY - minY) + minY;
+            const x = Math.random() * maxX - maxX / 2;
+            const y = Math.random() * maxY - maxY / 2;
             
-            noButton.style.position = 'absolute';
-            noButton.style.left = `${x}px`;
-            noButton.style.top = `${y}px`;
+            noButton.style.transform = `translate(${x}px, ${y}px)`;
         }
         
         noButton.addEventListener('mouseover', moveNoButton);
