@@ -16,25 +16,33 @@
             align-items: center;
             flex-direction: column;
             overflow: hidden;
+            padding: 20px;
         }
         h1 {
             max-width: 600px;
+            font-size: 22px;
+            line-height: 1.5;
+            font-weight: 500;
         }
         .buttons {
-            margin-top: 20px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
         }
         button {
-            font-size: 20px;
-            padding: 10px 20px;
-            margin: 10px;
+            font-size: 18px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 20px;
+            border-radius: 25px;
             cursor: pointer;
             transition: 0.3s;
+            font-weight: bold;
         }
         .yes {
             background-color: #ff66b2;
             color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         .yes:hover {
             background-color: #ff3385;
@@ -52,8 +60,8 @@
         }
         .heart {
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             background-color: red;
             clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 80%, 20% 100%, 0% 35%);
             animation: floatUp 4s infinite ease-in-out;
@@ -77,7 +85,7 @@
     I always see how hard you try to see and understand me.<br>
     I always see how hard you try to make things work.<br>
     I’m proud of you, and I love you. <br>
-    Would you like to be My Valentine and MY little kind, thoughtful, loving, yapping, and sensitive creature? 🥰</h1>
+    Would you like to be My Valentine and MY little kind, thoughtful, loving, yapping and sensitive creature? 🥰</h1>
     
     <div class="buttons">
         <button class="yes" onclick="alert('Yay! You are mine forever! ❤️')">Yes</button>
