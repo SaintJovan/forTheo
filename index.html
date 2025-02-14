@@ -18,6 +18,7 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            position: relative;
         }
         .container {
             max-width: 600px;
@@ -49,7 +50,7 @@
             position: relative;
             display: flex;
             justify-content: center;
-            gap: 50px;
+            gap: 100px;
         }
         .button {
             font-size: 1.2em;
@@ -78,12 +79,22 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             margin-top: 20px;
         }
+        .floating {
+            position: absolute;
+            font-size: 2em;
+            opacity: 0.7;
+            animation: float 10s infinite linear;
+        }
+        @keyframes float {
+            from { transform: translateY(100vh) translateX(0); }
+            to { transform: translateY(-10vh) translateX(50px); }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>To My Bebe</h1>
-        <p>"Hello my princess. Happy Valentines Day. (Happy for you cuz its me hehe). I wanted to just say that I always see how hard you try to fix our problems relationship while u still work hard for uni. And I always see how hard you try to understand and see me, even if u struggle sometimes to make sense how I am. I´m proud of u and I love you. Muah! So, would u like to be my Valentine? Quick disclaimer: The correct answers is "yes"."</p>
+        <h1>To My Dearest Love</h1>
+        <p>"Here, you can write your personal message for her."</p>
         <p class="heart">❤️</p>
         <div class="buttons">
             <button class="button yes" id="yesButton">Yes</button>
@@ -92,13 +103,32 @@
         <div id="message">Yay! I knew you would say yes! 💖</div>
     </div>
     <script>
+        function createFloatingElements() {
+            const symbols = ['❤️', '🌸', '💖', '🌹'];
+            for (let i = 0; i < 20; i++) {
+                let el = document.createElement('div');
+                el.classList.add('floating');
+                el.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.animationDuration = (5 + Math.random() * 5) + 's';
+                document.body.appendChild(el);
+            }
+        }
+        createFloatingElements();
+        
         const noButton = document.getElementById('noButton');
         const yesButton = document.getElementById('yesButton');
         const message = document.getElementById('message');
+        const container = document.querySelector('.container');
         
         function moveNoButton() {
-            const x = Math.random() * (window.innerWidth - 200);
-            const y = Math.random() * (window.innerHeight - 100);
+            const containerRect = container.getBoundingClientRect();
+            const maxX = containerRect.width - noButton.clientWidth;
+            const maxY = containerRect.height - noButton.clientHeight;
+            
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+            
             noButton.style.left = `${x}px`;
             noButton.style.top = `${y}px`;
         }
@@ -112,3 +142,4 @@
     </script>
 </body>
 </html>
+
